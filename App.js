@@ -1,5 +1,6 @@
 import React, {useState, useRef, useCallback} from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
+import BackgroundTimer from 'react-native-background-timer';
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -9,7 +10,7 @@ const useCounter = (initialValue, ms) => {
     if (intervalRef.current !== null) {
       return;
     }
-    intervalRef.current = setInterval(() => {
+    intervalRef.current = BackgroundTimer.setInterval(() => {
       setCount((c) => c + 1);
     }, ms);
   }, []);
@@ -18,7 +19,7 @@ const useCounter = (initialValue, ms) => {
     if (intervalRef.current === null) {
       return;
     }
-    clearInterval(intervalRef.current);
+    BackgroundTimer.clearInterval(intervalRef.current);
     intervalRef.current = null;
   }, []);
 
