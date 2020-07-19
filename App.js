@@ -14,7 +14,7 @@ const useCounter = (initialValue, ms) => {
     }, ms);
   }, []);
 
-  const stop = useCallback(() => {
+  const pause = useCallback(() => {
     if (intervalRef.current === null) {
       return;
     }
@@ -26,17 +26,17 @@ const useCounter = (initialValue, ms) => {
     setCount(0);
   }, []);
 
-  return {count, start, stop, reset};
+  return {count, start, pause, reset};
 };
 
 const App = () => {
-  const {count, start, stop, reset} = useCounter(0, 500);
+  const {count, start, pause, reset} = useCounter(0, 500);
 
   return (
     <View>
-      <Text>Current Count: {count}</Text>
+      <Text style={styles.textStyle}>Current Count: {count}</Text>
       <Button title="Start" onPress={start} />
-      <Button title="Stop" onPress={stop} />
+      <Button title="Pause" onPress={pause} />
       <Button title="Reset" onPress={reset} />
     </View>
   );
