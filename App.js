@@ -50,28 +50,33 @@ const useCounter = (initialValue, ms) => {
 const App = () => {
   const {count, start, pause, reset} = useCounter(0, 500);
 
-  const testPush = () => {
-    PushNotification.localNotification({
+  const setNotification = () => {
+    PushNotification.localNotificationSchedule({
       title: 'My Notification Title', // (optional)
       message: 'My Notification Message', // (required)
+      date: new Date(Date.now() + 1 * 5 * 1000), // in x * 1 min
     });
+  };
+
+  const cancelNotfication = () => {
+    PushNotification.removeAllDeliveredNotifications();
+    // PushNotification.cancelAllLocalNotifications();
   };
 
   return (
     <View>
-      <Text style={styles.text}>Current Count: {count}</Text>
+      <Text style={styles.text}>1 Pomodoro</Text>
       <View style={styles.buttonWrapper}>
         <View style={styles.button}>
-          <Button title="Start" onPress={start} />
+          <Button title="Start" onPress={setNotification} />
         </View>
         <View style={styles.button}>
           <Button title="Pause" onPress={pause} />
         </View>
         <View style={styles.button}>
-          <Button title="Reset" onPress={reset} />
+          <Button title="Reset" onPress={cancelNotfication} />
         </View>
       </View>
-      <Button title="Notif" onPress={testPush} />
     </View>
   );
 };
