@@ -35,17 +35,33 @@ const App = () => {
 
   return (
     <View>
-      <Text style={styles.textStyle}>Current Count: {count}</Text>
-      <Button title="Start" onPress={start} />
-      <Button title="Pause" onPress={pause} />
-      <Button title="Reset" onPress={reset} />
+      <Text style={styles.text}>Current Count: {count}</Text>
+      <View style={styles.buttonWrapper}>
+        <View style={styles.button}>
+          <Button title="Start" onPress={start} />
+        </View>
+        <View style={styles.button}>
+          <Button title="Pause" onPress={pause} />
+        </View>
+        <View style={styles.button}>
+          <Button title="Reset" onPress={reset} />
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  textStyle: {
-    fontSize: 30,
+  text: {
+    fontSize: 25,
+    margin: 20,
+  },
+  buttonWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  button: {
+    width: 90,
   },
 });
 
