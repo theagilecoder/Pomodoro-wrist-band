@@ -1,6 +1,23 @@
 import React, {useState, useRef, useCallback} from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
+import PushNotification from 'react-native-push-notification';
+
+PushNotification.configure({
+  onRegister: function (token) {
+    console.log('TOKEN:', token);
+  },
+  onNotification: function (notification) {
+    console.log('NOTIFICATION:', notification);
+  },
+  permissions: {
+    alert: true,
+    badge: true,
+    sound: true,
+  },
+  popInitialNotification: true,
+  requestPermissions: Platform.OS === 'ios',
+});
 
 const useCounter = (initialValue, ms) => {
   const [count, setCount] = useState(initialValue);
@@ -33,6 +50,13 @@ const useCounter = (initialValue, ms) => {
 const App = () => {
   const {count, start, pause, reset} = useCounter(0, 500);
 
+  const testPush = () => {
+    PushNotification.localNotification({
+      title: 'My Notification Title', // (optional)
+      message: 'My Notification Message', // (required)
+    });
+  };
+
   return (
     <View>
       <Text style={styles.text}>Current Count: {count}</Text>
@@ -47,6 +71,7 @@ const App = () => {
           <Button title="Reset" onPress={reset} />
         </View>
       </View>
+      <Button title="Notif" onPress={testPush} />
     </View>
   );
 };
