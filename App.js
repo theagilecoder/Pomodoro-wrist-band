@@ -3,6 +3,7 @@ import {StyleSheet, Text, View, Button} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import PushNotification from 'react-native-push-notification';
 import Header from './src/components/Header';
+import Pomodoro from './src/components/Pomodoro';
 
 PushNotification.configure({
   onRegister: function (token) {
@@ -67,34 +68,11 @@ const App = () => {
   return (
     <View>
       <Header />
-      <Text style={styles.text}>1 Pomodoro</Text>
-      <View style={styles.buttonWrapper}>
-        <View style={styles.button}>
-          <Button title="Start" onPress={setNotification} />
-        </View>
-        <View style={styles.button}>
-          <Button title="Pause" onPress={pause} />
-        </View>
-        <View style={styles.button}>
-          <Button title="Reset" onPress={cancelNotfication} />
-        </View>
-      </View>
+      <Pomodoro />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 25,
-    margin: 20,
-  },
-  buttonWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  button: {
-    width: 90,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default App;
