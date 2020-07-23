@@ -2,6 +2,7 @@ import React, {useState, useRef, useCallback} from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import PushNotification from 'react-native-push-notification';
+import Header from './src/components/Header';
 
 PushNotification.configure({
   onRegister: function (token) {
@@ -65,6 +66,7 @@ const App = () => {
 
   return (
     <View>
+      <Header />
       <Text style={styles.text}>1 Pomodoro</Text>
       <View style={styles.buttonWrapper}>
         <View style={styles.button}>
