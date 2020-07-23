@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, Button} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import PushNotification from 'react-native-push-notification';
 import Header from './src/components/Header';
-import Pomodoro from './src/components/Pomodoro';
+import Pomodoro1 from './src/components/Pomodoro1';
 
 PushNotification.configure({
   onRegister: function (token) {
@@ -68,7 +68,9 @@ const App = () => {
   return (
     <View>
       <Header />
-      <Pomodoro />
+      <Pomodoro1 />
+      <Pomodoro1 />
+      <Pomodoro1 />
     </View>
   );
 };

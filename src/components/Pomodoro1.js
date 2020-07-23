@@ -1,5 +1,6 @@
-import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
+import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
 
 PushNotification.configure({
@@ -18,7 +19,10 @@ PushNotification.configure({
   requestPermissions: Platform.OS === 'ios',
 });
 
-const Pomodoro = () => {
+const Pomodoro1 = () => {
+  const [collapsed, setCollapsed] = useState(true);
+  const toggle = () => setCollapsed(!collapsed);
+
   const sendNotification = () => {
     // Send notification at start of Pomodoro
     PushNotification.localNotification({
@@ -40,31 +44,41 @@ const Pomodoro = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>1 Pomodoro</Text>
-      <View style={styles.buttonWrapper}>
-        <View style={styles.button}>
-          <Button title="Start" onPress={sendNotification} />
+    <View>
+      <TouchableOpacity onPress={toggle}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>1 Pomodoro</Text>
         </View>
-        <View style={styles.button}>
-          <Button title="Abort" onPress={cancelNotification} />
+      </TouchableOpacity>
+      <Collapsible collapsed={collapsed}>
+        <View style={styles.buttonWrapper}>
+          <View style={styles.button}>
+            <Button title="Start" onPress={sendNotification} />
+          </View>
+          <View style={styles.button}>
+            <Button title="Abort" onPress={cancelNotification} />
+          </View>
         </View>
-      </View>
+      </Collapsible>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    // backgroundColor: 'grey',
-    margin: 10,
-    borderRadius: 15,
+  header: {
+    backgroundColor: '#F1E9F5',
+    padding: 10,
+    marginTop: 20,
   },
-  text: {
-    fontSize: 22,
-    marginBottom: 20,
+  headerText: {
+    textAlign: 'left',
+    fontSize: 16,
+    fontWeight: 'bold',
+    paddingLeft: 20,
   },
   buttonWrapper: {
+    padding: 10,
+    backgroundColor: '#F1E9F5',
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
@@ -73,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Pomodoro;
+export default Pomodoro1;
