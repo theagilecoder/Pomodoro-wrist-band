@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback} from 'react';
+import {useState, useRef, useCallback} from 'react';
 import BackgroundTimer from 'react-native-background-timer';
 
 const useCounter = (initialValue, ms) => {
@@ -26,14 +26,7 @@ const useCounter = (initialValue, ms) => {
     setCount(0);
   }, []);
 
-  const timeout = (ms) => {
-    BackgroundTimer.setTimeout(() => {
-      stop();
-      reset();
-    }, ms);
-  };
-
-  return {count, start, stop, reset, timeout};
+  return {count, start, stop, reset};
 };
 
 export default useCounter;

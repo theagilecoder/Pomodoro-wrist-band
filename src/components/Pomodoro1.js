@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
+import BackgroundTimer from 'react-native-background-timer';
 import useCounter from './Counter';
 
 PushNotification.configure({
@@ -23,7 +24,7 @@ PushNotification.configure({
 const Pomodoro1 = () => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleCollapse = () => setCollapsed(!collapsed);
-  const {count, start, stop, reset, timeout} = useCounter(0, 1000);
+  const {count, start, stop, reset} = useCounter(0, 1000);
 
   const sendNotification = () => {
     // Send notification at start of Pomodoro
@@ -32,6 +33,9 @@ const Pomodoro1 = () => {
       message: 'Pomodoro Counter Started',
     });
 
+    // Start the Counter
+    start();
+
     // Send notification at end of Pomodoro
     PushNotification.localNotificationSchedule({
       title: 'Pomodoro for Wrist band',
@@ -39,8 +43,11 @@ const Pomodoro1 = () => {
       date: new Date(Date.now() + 1 * 5 * 1000),
     });
 
-    // Set Timeout for stopping the timer
-    timeout(5 * 1000);
+    // Set Timeout for stopping Counter at end of Pomodoro
+    BackgroundTimer.setTimeout(() => {
+      stop();
+      reset();
+    }, 5 * 1000);
   };
 
   const cancelNotification = () => {
@@ -52,23 +59,18 @@ const Pomodoro1 = () => {
     <View>
       <TouchableOpacity onPress={toggleCollapse}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>1 Pomodoro {count}s</Text>
+          <Text style={styles.headerText}>1 Pomodoro</Text>
+          <Text style={styles.counter}>Work {count}s</Text>
         </View>
       </TouchableOpacity>
       <Collapsible collapsed={collapsed}>
         <View style={styles.buttonWrapper}>
           <View style={styles.button}>
-            <Button
-              title="Start"
-              onPress={() => {
-                sendNotification();
-                start();
-              }}
-            />
+            <Button title="Start" onPress={sendNotification} />
           </View>
           <View style={styles.button}>
             <Button
-              title="Abort"
+              title="Cancel"
               onPress={() => {
                 cancelNotification();
                 stop();
@@ -87,12 +89,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#F1E9F5',
     padding: 10,
     marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   headerText: {
-    textAlign: 'left',
     fontSize: 16,
     fontWeight: 'bold',
     paddingLeft: 20,
+  },
+  counter: {
+    fontSize: 16,
+    paddingRight: 20,
   },
   buttonWrapper: {
     padding: 10,
