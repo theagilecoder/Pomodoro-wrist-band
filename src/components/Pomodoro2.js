@@ -21,33 +21,53 @@ PushNotification.configure({
   requestPermissions: Platform.OS === 'ios',
 });
 
-const Pomodoro1 = () => {
+const Pomodoro2 = () => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleCollapse = () => setCollapsed(!collapsed);
   const {count, start, stop, reset} = useCounter(0, 1000);
 
   const sendNotification = () => {
-    // Send notification at start of Pomodoro
+    // Send notification at start of 1st Pomodoro
     PushNotification.localNotification({
-      title: 'Pomodoro for Wrist band',
-      message: 'Pomodoro Counter Started',
+      message: '1st Pomodoro started',
     });
 
-    // Start the Counter
-    start();
-
-    // Send notification at end of Pomodoro
+    // Send notification at end of 1st Pomodoro
     PushNotification.localNotificationSchedule({
-      title: 'Pomodoro for Wrist band',
-      message: 'Pomodoro Counter Finished',
+      message: '1st Pomodoro finished - Take Rest',
       date: new Date(Date.now() + 1 * 5 * 1000),
     });
 
-    // Set Timeout for stopping Counter at end of Pomodoro
+    // Send notification at end of 1st Rest
+    PushNotification.localNotificationSchedule({
+      message: 'Rest over - 2nd Pomodoro started',
+      date: new Date(Date.now() + 1 * 10 * 1000),
+    });
+
+    // Send notification at end of 2nd Pomodoro
+    PushNotification.localNotificationSchedule({
+      message: '2nd Pomodoro finished',
+      date: new Date(Date.now() + 1 * 15 * 1000),
+    });
+
+    // Start Counter at start of 1st Pomodoro
+    start();
+
+    // Reset Counter at end of 1st Pomodoro
+    BackgroundTimer.setTimeout(() => {
+      reset();
+    }, 5 * 1000);
+
+    // Reset Counter at end of 1st Rest
+    BackgroundTimer.setTimeout(() => {
+      reset();
+    }, 10 * 1000);
+
+    // Reset Counter at end of 2nd Pomodoro
     BackgroundTimer.setTimeout(() => {
       stop();
       reset();
-    }, 5 * 1000);
+    }, 15 * 1000);
   };
 
   const cancelNotification = () => {
@@ -64,8 +84,8 @@ const Pomodoro1 = () => {
     <View>
       <TouchableOpacity onPress={toggleCollapse}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>1 Pomodoro</Text>
-          <Text style={styles.counter}>{count}s</Text>
+          <Text style={styles.headerText}>2 Pomodoros</Text>
+          <Text style={styles.counter}>{5 - count}s</Text>
         </View>
       </TouchableOpacity>
       <Collapsible collapsed={collapsed}>
@@ -111,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Pomodoro1;
+export default Pomodoro2;
