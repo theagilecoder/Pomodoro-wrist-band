@@ -21,7 +21,7 @@ PushNotification.configure({
 
 const Pomodoro1 = () => {
   const [collapsed, setCollapsed] = useState(true);
-  const toggle = () => setCollapsed(!collapsed);
+  const toggleCollapse = () => setCollapsed(!collapsed);
 
   const sendNotification = () => {
     // Send notification at start of Pomodoro
@@ -45,7 +45,7 @@ const Pomodoro1 = () => {
 
   return (
     <View>
-      <TouchableOpacity onPress={toggle}>
+      <TouchableOpacity onPress={toggleCollapse}>
         <View style={styles.header}>
           <Text style={styles.headerText}>1 Pomodoro</Text>
         </View>

@@ -1,5 +1,5 @@
 import React, {useState, useRef, useCallback} from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import PushNotification from 'react-native-push-notification';
 import Header from './src/components/Header';
