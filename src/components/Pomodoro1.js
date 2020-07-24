@@ -4,6 +4,7 @@ import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
 import BackgroundTimer from 'react-native-background-timer';
 import useCounter from './Counter';
+import handleSeconds from './HandleSeconds';
 
 PushNotification.configure({
   onRegister: function (token) {
@@ -25,29 +26,27 @@ const Pomodoro1 = () => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleCollapse = () => setCollapsed(!collapsed);
   const {count, start, stop, reset} = useCounter(0, 1000);
+  const [label, setLabel] = useState('');
 
   const sendNotification = () => {
-    // Send notification at start of Pomodoro
-    PushNotification.localNotification({
-      title: 'Pomodoro for Wrist band',
-      message: 'Pomodoro Counter Started',
-    });
-
-    // Start the Counter
+    // Start Counter & Send notification at start of 1st Pomodoro
     start();
+    setLabel('Work : ');
+    PushNotification.localNotification({
+      message: 'Pomodoro started',
+    });
 
     // Send notification at end of Pomodoro
-    PushNotification.localNotificationSchedule({
-      title: 'Pomodoro for Wrist band',
-      message: 'Pomodoro Counter Finished',
-      date: new Date(Date.now() + 1 * 5 * 1000),
-    });
 
     // Set Timeout for stopping Counter at end of Pomodoro
     BackgroundTimer.setTimeout(() => {
       stop();
       reset();
-    }, 5 * 1000);
+      setLabel('Finished');
+      PushNotification.localNotification({
+        message: 'Pomodoro finished',
+      });
+    }, 1500 * 1000);
   };
 
   const cancelNotification = () => {
@@ -58,6 +57,7 @@ const Pomodoro1 = () => {
     // Handle Counter
     stop();
     reset();
+    setLabel('');
   };
 
   return (
@@ -65,7 +65,7 @@ const Pomodoro1 = () => {
       <TouchableOpacity onPress={toggleCollapse}>
         <View style={styles.header}>
           <Text style={styles.headerText}>1 Pomodoro</Text>
-          <Text style={styles.counter}>{count}s</Text>
+          <Text style={styles.counter}>{label + handleSeconds(count)}</Text>
         </View>
       </TouchableOpacity>
       <Collapsible collapsed={collapsed}>
