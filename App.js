@@ -69,8 +69,6 @@ const App = () => {
     <View>
       <Header />
       <Pomodoro1 />
-      <Pomodoro1 />
-      <Pomodoro1 />
     </View>
   );
 };
