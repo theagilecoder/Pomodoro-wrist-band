@@ -6,6 +6,7 @@ import Pomodoro1 from './src/components/Pomodoro1';
 import Pomodoro2 from './src/components/Pomodoro2';
 import Pomodoro3 from './src/components/Pomodoro3';
 import Pomodoro4 from './src/components/Pomodoro4';
+import Pomodoro5 from './src/components/Pomodoro5';
 import About from './src/components/About';
 
 PushNotification.configure({
@@ -32,6 +33,7 @@ const App = () => {
       <Pomodoro2 />
       <Pomodoro3 />
       <Pomodoro4 />
+      <Pomodoro5 />
       <About />
     </View>
   );
