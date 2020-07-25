@@ -5,6 +5,7 @@ import Header from './src/components/Header';
 import Pomodoro1 from './src/components/Pomodoro1';
 import Pomodoro2 from './src/components/Pomodoro2';
 import Pomodoro3 from './src/components/Pomodoro3';
+import About from './src/components/About';
 
 PushNotification.configure({
   onRegister: function (token) {
@@ -29,6 +30,7 @@ const App = () => {
       <Pomodoro1 />
       <Pomodoro2 />
       <Pomodoro3 />
+      <About />
     </View>
   );
 };
