@@ -45,7 +45,7 @@ const Pomodoro1 = () => {
       PushNotification.localNotification({
         message: 'Pomodoro finished',
       });
-    }, 15 * 1000);
+    }, 1500 * 1000);
   };
 
   const cancelNotification = () => {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
@@ -28,6 +28,10 @@ const Pomodoro2 = () => {
   const {count, start, stop, reset} = useCounter(0, 1000);
   const [label, setLabel] = useState('');
 
+  const timeout1 = useRef(null);
+  const timeout2 = useRef(null);
+  const timeout3 = useRef(null);
+
   const sendNotification = () => {
     // Start Counter & Send notification at start of 1st Pomodoro
     start();
@@ -37,7 +41,7 @@ const Pomodoro2 = () => {
     });
 
     // Reset Counter & Send notification at end of 1st Pomodoro
-    BackgroundTimer.setTimeout(() => {
+    timeout1.current = BackgroundTimer.setTimeout(() => {
       reset();
       setLabel('Rest : ');
       PushNotification.localNotification({
@@ -46,7 +50,7 @@ const Pomodoro2 = () => {
     }, 1500 * 1000);
 
     // Reset Counter & Send notification at end of 1st Rest
-    BackgroundTimer.setTimeout(() => {
+    timeout2.current = BackgroundTimer.setTimeout(() => {
       reset();
       setLabel('Work : ');
       PushNotification.localNotification({
@@ -55,7 +59,7 @@ const Pomodoro2 = () => {
     }, 1800 * 1000);
 
     // Reset Counter & Send notification at end of 2nd Pomodoro
-    BackgroundTimer.setTimeout(() => {
+    timeout3.current = BackgroundTimer.setTimeout(() => {
       stop();
       reset();
       setLabel('Finished');
@@ -67,13 +71,17 @@ const Pomodoro2 = () => {
 
   const cancelNotification = () => {
     // Handle Notifications
-    // PushNotification.removeAllDeliveredNotifications();
     PushNotification.cancelAllLocalNotifications();
 
     // Handle Counter
     stop();
     reset();
     setLabel('');
+
+    // Clear Timeouts
+    BackgroundTimer.clearTimeout(timeout1.current);
+    BackgroundTimer.clearTimeout(timeout2.current);
+    BackgroundTimer.clearTimeout(timeout3.current);
   };
 
   return (
