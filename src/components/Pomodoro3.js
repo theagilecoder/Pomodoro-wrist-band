@@ -27,6 +27,7 @@ const Pomodoro3 = () => {
   const toggleCollapse = () => setCollapsed(!collapsed);
   const {count, start, stop, reset} = useCounter(0, 1000);
   const [label, setLabel] = useState('');
+  const buttonStatus = ['Work : ', 'Rest : '].includes(label) ? true : false;
 
   const timeout1 = useRef(null);
   const timeout2 = useRef(null);
@@ -117,7 +118,11 @@ const Pomodoro3 = () => {
       <Collapsible collapsed={collapsed}>
         <View style={styles.buttonWrapper}>
           <View style={styles.button}>
-            <Button title="Start" onPress={sendNotification} />
+            <Button
+              title="Start"
+              onPress={sendNotification}
+              disabled={buttonStatus}
+            />
           </View>
           <View style={styles.button}>
             <Button title="Cancel" onPress={cancelNotification} />

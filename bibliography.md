@@ -11,3 +11,5 @@ https://github.com/oblador/react-native-collapsible
 https://reactnative.dev/docs/signed-apk-android
 
 https://dev.to/srajesh636/how-we-reduced-our-production-apk-size-by-70-in-react-native-1lci
+
+https://github.com/oblador/react-native-collapsible/issues/347
