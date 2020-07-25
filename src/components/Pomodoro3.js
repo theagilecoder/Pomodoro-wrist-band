@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
@@ -28,6 +28,12 @@ const Pomodoro3 = () => {
   const {count, start, stop, reset} = useCounter(0, 1000);
   const [label, setLabel] = useState('');
 
+  const timeout1 = useRef(null);
+  const timeout2 = useRef(null);
+  const timeout3 = useRef(null);
+  const timeout4 = useRef(null);
+  const timeout5 = useRef(null);
+
   const sendNotification = () => {
     // Start Counter & Send notification at start of 1st Pomodoro
     start();
@@ -37,61 +43,67 @@ const Pomodoro3 = () => {
     });
 
     // Reset Counter & Send notification at end of 1st Pomodoro
-    BackgroundTimer.setTimeout(() => {
+    timeout1.current = BackgroundTimer.setTimeout(() => {
       reset();
       setLabel('Rest : ');
       PushNotification.localNotification({
         message: '1st Pomodoro finished - Take Rest',
       });
-    }, 1500 * 1000);
+    }, 15 * 1000);
 
     // Reset Counter & Send notification at end of 1st Rest
-    BackgroundTimer.setTimeout(() => {
+    timeout2.current = BackgroundTimer.setTimeout(() => {
       reset();
       setLabel('Work : ');
       PushNotification.localNotification({
         message: 'Rest over - 2nd Pomodoro started',
       });
-    }, 1800 * 1000);
+    }, 18 * 1000);
 
     // Reset Counter & Send notification at end of 2nd Pomodoro
-    BackgroundTimer.setTimeout(() => {
+    timeout3.current = BackgroundTimer.setTimeout(() => {
       reset();
       setLabel('Rest : ');
       PushNotification.localNotification({
         message: '2nd Pomodoro finished - Take Rest',
       });
-    }, 3300 * 1000);
+    }, 33 * 1000);
 
     // Reset Counter & Send notification at end of 2nd Rest
-    BackgroundTimer.setTimeout(() => {
+    timeout4.current = BackgroundTimer.setTimeout(() => {
       reset();
       setLabel('Work : ');
       PushNotification.localNotification({
         message: 'Rest over - 3rd Pomodoro started',
       });
-    }, 3600 * 1000);
+    }, 36 * 1000);
 
     // Reset Counter & Send notification at end of 3rd Pomodoro
-    BackgroundTimer.setTimeout(() => {
+    timeout5.current = BackgroundTimer.setTimeout(() => {
       stop();
       reset();
       setLabel('Finished');
       PushNotification.localNotification({
         message: '3rd Pomodoro finished',
       });
-    }, 5100 * 1000);
+    }, 51 * 1000);
   };
 
   const cancelNotification = () => {
     // Handle Notifications
-    // PushNotification.removeAllDeliveredNotifications();
     PushNotification.cancelAllLocalNotifications();
 
     // Handle Counter
     stop();
     reset();
     setLabel('');
+
+    // Clear Timeouts
+    BackgroundTimer.clearTimeout(timeout1.current);
+    BackgroundTimer.clearTimeout(timeout2.current);
+    BackgroundTimer.clearTimeout(timeout3.current);
+    BackgroundTimer.clearTimeout(timeout4.current);
+    BackgroundTimer.clearTimeout(timeout5.current);
   };
 
   return (
