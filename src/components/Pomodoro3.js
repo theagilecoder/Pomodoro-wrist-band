@@ -49,7 +49,7 @@ const Pomodoro3 = () => {
       PushNotification.localNotification({
         message: '1st Pomodoro finished - Take Rest',
       });
-    }, 15 * 1000);
+    }, 1500 * 1000);
 
     // Reset Counter & Send notification at end of 1st Rest
     timeout2.current = BackgroundTimer.setTimeout(() => {
@@ -58,7 +58,7 @@ const Pomodoro3 = () => {
       PushNotification.localNotification({
         message: 'Rest over - 2nd Pomodoro started',
       });
-    }, 18 * 1000);
+    }, 1800 * 1000);
 
     // Reset Counter & Send notification at end of 2nd Pomodoro
     timeout3.current = BackgroundTimer.setTimeout(() => {
@@ -67,7 +67,7 @@ const Pomodoro3 = () => {
       PushNotification.localNotification({
         message: '2nd Pomodoro finished - Take Rest',
       });
-    }, 33 * 1000);
+    }, 3300 * 1000);
 
     // Reset Counter & Send notification at end of 2nd Rest
     timeout4.current = BackgroundTimer.setTimeout(() => {
@@ -76,7 +76,7 @@ const Pomodoro3 = () => {
       PushNotification.localNotification({
         message: 'Rest over - 3rd Pomodoro started',
       });
-    }, 36 * 1000);
+    }, 3600 * 1000);
 
     // Reset Counter & Send notification at end of 3rd Pomodoro
     timeout5.current = BackgroundTimer.setTimeout(() => {
@@ -86,7 +86,7 @@ const Pomodoro3 = () => {
       PushNotification.localNotification({
         message: '3rd Pomodoro finished',
       });
-    }, 51 * 1000);
+    }, 5100 * 1000);
   };
 
   const cancelNotification = () => {
