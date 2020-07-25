@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
@@ -27,6 +27,7 @@ const Pomodoro1 = () => {
   const toggleCollapse = () => setCollapsed(!collapsed);
   const {count, start, stop, reset} = useCounter(0, 1000);
   const [label, setLabel] = useState('');
+  const timeoutRef = useRef(null); // Each setTimeout has a ref to store its ID
 
   const sendNotification = () => {
     // Start Counter & Send notification at start of 1st Pomodoro
@@ -36,28 +37,28 @@ const Pomodoro1 = () => {
       message: 'Pomodoro started',
     });
 
-    // Send notification at end of Pomodoro
-
-    // Set Timeout for stopping Counter at end of Pomodoro
-    BackgroundTimer.setTimeout(() => {
+    // Reset Counter & Send notification at end of 1st Pomodoro
+    timeoutRef.current = BackgroundTimer.setTimeout(() => {
       stop();
       reset();
       setLabel('Finished');
       PushNotification.localNotification({
         message: 'Pomodoro finished',
       });
-    }, 1500 * 1000);
+    }, 15 * 1000);
   };
 
   const cancelNotification = () => {
     // Handle Notifications
-    // PushNotification.removeAllDeliveredNotifications();
     PushNotification.cancelAllLocalNotifications();
 
     // Handle Counter
     stop();
     reset();
     setLabel('');
+
+    // Clear Timeouts
+    BackgroundTimer.clearTimeout(timeoutRef.current);
   };
 
   return (
