@@ -13,3 +13,7 @@ https://reactnative.dev/docs/signed-apk-android
 https://dev.to/srajesh636/how-we-reduced-our-production-apk-size-by-70-in-react-native-1lci
 
 https://github.com/oblador/react-native-collapsible/issues/347
+
+https://stackoverflow.com/questions/56576462/gradlew-bundlerelease-doesnt-generate-release-apk-in-react-native
+
+How to Change the App Icon in Android Studio (With Adaptive Icons) - https://www.youtube.com/watch?v=ts98gL1JCQU
