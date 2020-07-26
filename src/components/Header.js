@@ -12,7 +12,7 @@ const Header = () => {
       <Text style={{color: 'red'}}>o</Text>
       <Text style={{color: 'orange'}}>r</Text>
       <Text style={{color: 'green'}}>o</Text>
-      <Text style={{fontSize: 20}}> for Wrist Band</Text>
+      <Text style={{fontSize: 20}}> for Smart Bands</Text>
     </Text>
   );
 };

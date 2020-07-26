@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ScrollView, StyleSheet} from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import Header from './src/components/Header';
 import Pomodoro1 from './src/components/Pomodoro1';
@@ -28,17 +28,25 @@ PushNotification.configure({
 
 const App = () => {
   return (
-    <View>
-      <Header />
-      <Pomodoro1 />
-      <Pomodoro2 />
-      <Pomodoro3 />
-      <Pomodoro4 />
-      <Pomodoro5 />
-      <Pomodoro6 />
-      <About />
+    <View style={{flex: 1}}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Header />
+        <Pomodoro1 />
+        <Pomodoro2 />
+        <Pomodoro3 />
+        <Pomodoro4 />
+        <Pomodoro5 />
+        <Pomodoro6 />
+        <About />
+      </ScrollView>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  scrollView: {
+    // backgroundColor: '#F5F6FD',
+  },
+});
 
 export default App;
