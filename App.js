@@ -1,6 +1,8 @@
 import React from 'react';
 import {View, ScrollView, StyleSheet} from 'react-native';
 import PushNotification from 'react-native-push-notification';
+import LinearGradient from 'react-native-linear-gradient';
+
 import Header from './src/components/Header';
 import Pomodoro1 from './src/components/Pomodoro1';
 import Pomodoro2 from './src/components/Pomodoro2';
@@ -28,24 +30,39 @@ PushNotification.configure({
 
 const App = () => {
   return (
-    <View style={{flex: 1}}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <Header />
-        <Pomodoro1 />
-        <Pomodoro2 />
-        <Pomodoro3 />
-        <Pomodoro4 />
-        <Pomodoro5 />
-        <Pomodoro6 />
-        <About />
-      </ScrollView>
+    <View style={styles.container}>
+      <LinearGradient
+        colors={['#09203f', '#537895']}
+        style={styles.linearGradient}
+        start={{x: 0, y: 0}}
+        end={{x: 1, y: 0}}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <Header />
+          <Pomodoro1 />
+          <Pomodoro2 />
+          <Pomodoro3 />
+          <Pomodoro4 />
+          <Pomodoro5 />
+          <Pomodoro6 />
+          <About />
+        </ScrollView>
+      </LinearGradient>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    // backgroundColor: '#F5F6FD',
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  linearGradient: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

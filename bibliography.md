@@ -17,3 +17,7 @@ https://github.com/oblador/react-native-collapsible/issues/347
 https://stackoverflow.com/questions/56576462/gradlew-bundlerelease-doesnt-generate-release-apk-in-react-native
 
 How to Change the App Icon in Android Studio (With Adaptive Icons) - https://www.youtube.com/watch?v=ts98gL1JCQU
+
+https://github.com/react-native-community/react-native-linear-gradient
+
+https://blog.logrocket.com/understanding-react-native-linear-gradient/
