@@ -4,6 +4,7 @@ import {Text, StyleSheet} from 'react-native';
 const Header = () => {
   return (
     <Text style={styles.text}>
+      <Text style={{fontSize: 25}}>1 Page </Text>
       <Text style={{color: 'blue'}}>P</Text>
       <Text style={{color: 'red'}}>o</Text>
       <Text style={{color: 'orange'}}>m</Text>
@@ -12,7 +13,6 @@ const Header = () => {
       <Text style={{color: 'red'}}>o</Text>
       <Text style={{color: 'orange'}}>r</Text>
       <Text style={{color: 'green'}}>o</Text>
-      <Text style={{fontSize: 20}}> for Smart Bands</Text>
     </Text>
   );
 };
