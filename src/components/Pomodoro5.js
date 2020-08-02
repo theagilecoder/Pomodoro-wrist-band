@@ -7,18 +7,6 @@ import useCounter from './Counter';
 import handleSeconds from './HandleSeconds';
 
 PushNotification.configure({
-  onRegister: function (token) {
-    console.log('TOKEN:', token);
-  },
-  onNotification: function (notification) {
-    console.log('NOTIFICATION:', notification);
-  },
-  permissions: {
-    alert: true,
-    badge: true,
-    sound: true,
-  },
-  popInitialNotification: true,
   requestPermissions: Platform.OS === 'ios',
 });
 
