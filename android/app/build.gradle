@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.pomodoro"
+        applicationId "com.onepagepomodoro"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
