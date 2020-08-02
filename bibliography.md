@@ -21,3 +21,5 @@ How to Change the App Icon in Android Studio (With Adaptive Icons) - https://www
 https://github.com/react-native-community/react-native-linear-gradient
 
 https://blog.logrocket.com/understanding-react-native-linear-gradient/
+
+https://www.npmjs.com/package/react-native-rename
