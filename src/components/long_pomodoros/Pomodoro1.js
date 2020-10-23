@@ -35,7 +35,7 @@ const Pomodoro1 = () => {
       PushNotification.localNotification({
         message: 'Pomodoro finished',
       });
-    }, 1500 * 1000);
+    }, 3000 * 1000);
   };
 
   const cancelNotification = () => {
@@ -79,7 +79,7 @@ const Pomodoro1 = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#F1E9F5',
+    backgroundColor: '#D3EEFF',
     padding: 10,
     marginTop: 20,
     flexDirection: 'row',
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     paddingVertical: 10,
     paddingHorizontal: 25,
-    backgroundColor: '#F1E9F5',
+    backgroundColor: '#D3EEFF',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

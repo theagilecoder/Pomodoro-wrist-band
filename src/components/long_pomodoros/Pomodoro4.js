@@ -40,7 +40,7 @@ const Pomodoro4 = () => {
       PushNotification.localNotification({
         message: '1st Pomodoro finished - Take Rest',
       });
-    }, 1500 * 1000);
+    }, 3000 * 1000);
 
     // Reset Counter & Send notification at end of 1st Rest
     timeout2.current = BackgroundTimer.setTimeout(() => {
@@ -49,7 +49,7 @@ const Pomodoro4 = () => {
       PushNotification.localNotification({
         message: 'Rest over - 2nd Pomodoro started',
       });
-    }, 1800 * 1000);
+    }, 3600 * 1000);
 
     // Reset Counter & Send notification at end of 2nd Pomodoro
     timeout3.current = BackgroundTimer.setTimeout(() => {
@@ -58,7 +58,7 @@ const Pomodoro4 = () => {
       PushNotification.localNotification({
         message: '2nd Pomodoro finished - Take Rest',
       });
-    }, 3300 * 1000);
+    }, 6600 * 1000);
 
     // Reset Counter & Send notification at end of 2nd Rest
     timeout4.current = BackgroundTimer.setTimeout(() => {
@@ -67,7 +67,7 @@ const Pomodoro4 = () => {
       PushNotification.localNotification({
         message: 'Rest over - 3rd Pomodoro started',
       });
-    }, 3600 * 1000);
+    }, 7200 * 1000);
 
     // Reset Counter & Send notification at end of 3rd Pomodoro
     timeout5.current = BackgroundTimer.setTimeout(() => {
@@ -76,7 +76,7 @@ const Pomodoro4 = () => {
       PushNotification.localNotification({
         message: '3rd Pomodoro finished - Take Rest',
       });
-    }, 5100 * 1000);
+    }, 10200 * 1000);
 
     // Reset Counter & Send notification at end of 3rd Rest
     timeout6.current = BackgroundTimer.setTimeout(() => {
@@ -85,7 +85,7 @@ const Pomodoro4 = () => {
       PushNotification.localNotification({
         message: 'Rest over - 4th Pomodoro started',
       });
-    }, 5400 * 1000);
+    }, 10800 * 1000);
 
     // Reset Counter & Send notification at end of 4th Pomodoro
     timeout7.current = BackgroundTimer.setTimeout(() => {
@@ -95,7 +95,7 @@ const Pomodoro4 = () => {
       PushNotification.localNotification({
         message: '4th Pomodoro finished',
       });
-    }, 6900 * 1000);
+    }, 13800 * 1000);
   };
 
   const cancelNotification = () => {
@@ -145,7 +145,7 @@ const Pomodoro4 = () => {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: '#F1E9F5',
+    backgroundColor: '#D3EEFF',
     padding: 10,
     marginTop: 20,
     flexDirection: 'row',
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     paddingVertical: 10,
     paddingHorizontal: 25,
-    backgroundColor: '#F1E9F5',
+    backgroundColor: '#D3EEFF',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
