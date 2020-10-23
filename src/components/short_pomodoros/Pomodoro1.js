@@ -3,8 +3,8 @@ import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
 import BackgroundTimer from 'react-native-background-timer';
-import useCounter from './Counter';
-import handleSeconds from './HandleSeconds';
+import useCounter from '../Counter';
+import handleSeconds from '../HandleSeconds';
 
 PushNotification.configure({
   requestPermissions: Platform.OS === 'ios',

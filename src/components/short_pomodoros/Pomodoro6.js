@@ -3,14 +3,14 @@ import {StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import PushNotification from 'react-native-push-notification';
 import BackgroundTimer from 'react-native-background-timer';
-import useCounter from './Counter';
-import handleSeconds from './HandleSeconds';
+import useCounter from '../Counter';
+import handleSeconds from '../HandleSeconds';
 
 PushNotification.configure({
   requestPermissions: Platform.OS === 'ios',
 });
 
-const Pomodoro5 = () => {
+const Pomodoro6 = () => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleCollapse = () => setCollapsed(!collapsed);
   const {count, start, stop, reset} = useCounter(0, 1000);
@@ -26,6 +26,8 @@ const Pomodoro5 = () => {
   const timeout7 = useRef(null);
   const timeout8 = useRef(null);
   const timeout9 = useRef(null);
+  const timeout10 = useRef(null);
+  const timeout11 = useRef(null);
 
   const sendNotification = () => {
     // Start Counter & Send notification at start of 1st Pomodoro
@@ -109,13 +111,31 @@ const Pomodoro5 = () => {
 
     // Reset Counter & Send notification at end of 5th Pomodoro
     timeout9.current = BackgroundTimer.setTimeout(() => {
+      reset();
+      setLabel('Rest : ');
+      PushNotification.localNotification({
+        message: '5th Pomodoro finished - Take Rest',
+      });
+    }, 8700 * 1000);
+
+    // Reset Counter & Send notification at end of 5th Rest
+    timeout10.current = BackgroundTimer.setTimeout(() => {
+      reset();
+      setLabel('Work : ');
+      PushNotification.localNotification({
+        message: 'Rest Over - 6th Pomodoro started',
+      });
+    }, 9000 * 1000);
+
+    // Reset Counter & Send notification at end of 6th Pomodoro
+    timeout11.current = BackgroundTimer.setTimeout(() => {
       stop();
       reset();
       setLabel('Finished');
       PushNotification.localNotification({
-        message: '5th Pomodoro finished',
+        message: '6th Pomodoro finished',
       });
-    }, 8700 * 1000);
+    }, 10500 * 1000);
   };
 
   const cancelNotification = () => {
@@ -137,13 +157,15 @@ const Pomodoro5 = () => {
     BackgroundTimer.clearTimeout(timeout7.current);
     BackgroundTimer.clearTimeout(timeout8.current);
     BackgroundTimer.clearTimeout(timeout9.current);
+    BackgroundTimer.clearTimeout(timeout10.current);
+    BackgroundTimer.clearTimeout(timeout11.current);
   };
 
   return (
     <View>
       <TouchableOpacity onPress={toggleCollapse}>
         <View style={styles.header}>
-          <Text style={styles.headerText}>5 Pomodoros</Text>
+          <Text style={styles.headerText}>6 Pomodoros</Text>
           <Text style={styles.counter}>{label + handleSeconds(count)}</Text>
         </View>
       </TouchableOpacity>
@@ -194,4 +216,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Pomodoro5;
+export default Pomodoro6;
