@@ -1,19 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Import Screens
 import ShortPomodoros from './src/screens/ShortPomodoros'
-
-// 1 Hour Pomodoros Screen
-const LongPomodoros = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Long Pomodoros!</Text>
-    </View>
-  );
-}
+import LongPomodoros from './src/screens/LongPomodoros'
 
 const Tab = createBottomTabNavigator();
 
