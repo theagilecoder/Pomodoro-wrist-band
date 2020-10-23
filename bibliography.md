@@ -23,3 +23,5 @@ https://github.com/react-native-community/react-native-linear-gradient
 https://blog.logrocket.com/understanding-react-native-linear-gradient/
 
 https://www.npmjs.com/package/react-native-rename
+
+https://reactnavigation.org/docs/getting-started
