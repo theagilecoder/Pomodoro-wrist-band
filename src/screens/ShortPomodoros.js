@@ -9,6 +9,7 @@ import Pomodoro3 from '../components/short_pomodoros/Pomodoro3';
 import Pomodoro4 from '../components/short_pomodoros/Pomodoro4';
 import Pomodoro5 from '../components/short_pomodoros/Pomodoro5';
 import Pomodoro6 from '../components/short_pomodoros/Pomodoro6';
+import SubHeading from '../components/short_pomodoros/SubHeading';
 
 // Screen with 0.5 Hour Pomodoros
 const ShortPomodoros = () => {
@@ -16,6 +17,7 @@ const ShortPomodoros = () => {
     <View style={{ flex: 1}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Header />
+        <SubHeading />
         <Pomodoro1 />
         <Pomodoro2 />
         <Pomodoro3 />
